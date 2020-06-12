@@ -1,0 +1,11 @@
+export const GET_RECIPES = 'GET_RECIPES';
+export const GOT_RECIPES = 'GOT_RECIPES';
+export const SET_ERRORS = 'SET_ERRORS';
+export const LOAD_RECIPE = 'LOAD_RECIPE';
+
+export const SET_LIKED = 'SET_LIKED';
+export const SET_UNLIKED = 'SET_UNLIKED';
+
+export const ADD_TO_SHOPPING = 'ADD_TO_SHOPPING';
+export const REMOVE_FROM_SHOPPING = 'REMOVE_FROM_SHOPPING';
+export const UPDATE_SHOPPING_ITEM = 'UPDATE_SHOPPING_ITEM';
