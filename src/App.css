@@ -73,7 +73,7 @@ code {
 	border-radius: 10rem;
 	border: none;
 	text-transform: uppercase;
-	color: rgb(53, 53, 53);
+	color: rgb(255, 255, 255);
 	cursor: pointer;
 	display: flex;
 	align-items: center;
@@ -152,6 +152,7 @@ code {
 	border: none;
 	background: none;
 	cursor: pointer;
+	visibility: visible;
 }
 .btn-tiny svg {
 	height: 100%;
@@ -484,7 +485,7 @@ code {
 }
 
 .recipe-btn-txt {
-	color: rgb(22, 22, 22);
+	color: rgb(255, 255, 255);
 }
 
 .recipe__title span {
@@ -688,8 +689,8 @@ code {
 	background-image: rgb(53, 53, 53);
 	width: 3.75rem;
 	padding-left: 2rem;
-	visibility: hidden;
-	opacity: 0;
+	visibility: visible;
+	opacity: 1;
 	transition: all 0.5s;
 }
 .shopping__item:hover .shopping__delete {

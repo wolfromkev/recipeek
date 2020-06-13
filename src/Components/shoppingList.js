@@ -6,7 +6,7 @@ import {
 	AiOutlineMinusCircle,
 	AiOutlinePlusCircle,
 } from 'react-icons/ai';
-
+import uniqid from 'uniqid';
 export class shoppingList extends Component {
 	state = {
 		newProps: 0,
@@ -21,11 +21,12 @@ export class shoppingList extends Component {
 
 	render() {
 		const { shoppingList } = this.props;
+		console.log(shoppingList.length);
 		let shoppingItem = shoppingList.map((item) => {
 			return (
-				<li class='shopping__item'>
+				<li className='shopping__item' key={uniqid()}>
 					<button
-						class='btn-tiny'
+						className='btn-tiny'
 						onClick={() =>
 							this.addMore(item.stateIngredient, -0.25, item.stateNumber)
 						}
@@ -33,7 +34,7 @@ export class shoppingList extends Component {
 						<AiOutlineMinusCircle></AiOutlineMinusCircle>
 					</button>
 					<button
-						class='btn-tiny'
+						className='btn-tiny'
 						onClick={() =>
 							this.addMore(item.stateIngredient, 0.25, item.stateNumber)
 						}
@@ -41,8 +42,8 @@ export class shoppingList extends Component {
 						<AiOutlinePlusCircle></AiOutlinePlusCircle>
 					</button>
 
-					<span class='shopping__count' className='recipe__info-text'>
-						<span class='shopping__description'>
+					<span className='shopping__count, recipe__info-text'>
+						<span className='shopping__description'>
 							{' '}
 							{item.stateNumber} {item.stateUnit} {item.stateIngredient}
 						</span>
@@ -50,7 +51,7 @@ export class shoppingList extends Component {
 
 					<span>
 						<button
-							class='shopping__delete btn-tiny'
+							className='shopping__delete btn-tiny'
 							onClick={() => this.removeItem(item.stateIngredient)}
 						>
 							<AiOutlineDelete></AiOutlineDelete>
@@ -61,10 +62,10 @@ export class shoppingList extends Component {
 		});
 
 		return (
-			<div class='shopping'>
-				<h2 class='heading-2'>Shopping List</h2>
+			<div className='shopping'>
+				<h2 className='heading-2'>Shopping List</h2>
 
-				<ul class='shopping__list'>{shoppingItem}</ul>
+				<ul className='shopping__list'>{shoppingItem}</ul>
 			</div>
 		);
 	}

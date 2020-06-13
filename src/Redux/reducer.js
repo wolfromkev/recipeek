@@ -9,9 +9,10 @@ import {
 	REMOVE_FROM_SHOPPING,
 	UPDATE_SHOPPING_ITEM,
 } from './types';
+import { filter } from 'mathjs';
 
 const initState = {
-	recipes: [],
+	drinks: [],
 	drink: null,
 	likes: [],
 	shoppingList: [],
@@ -26,9 +27,27 @@ const reducer = (state = initState, action) => {
 			};
 
 		case GOT_RECIPES:
+			let filteredDrinks = action.payload.drinks.filter((drink) => {
+				for (let i = 1; i < 15; i++) {
+					if (
+						eval(`drink.strIngredient${i}`) !== null &&
+						eval(`drink.strMeasure${i}`) === null
+					) {
+						console.log(drink);
+						return false;
+					} else if (
+						/1\/3|2\/3|\/6|\/9|\/11/i.test(eval(`drink.strMeasure${i}`))
+					) {
+						console.log(drink);
+						return false;
+					}
+				}
+				return true;
+			});
+
 			return {
 				...state,
-				recipes: action.payload,
+				drinks: filteredDrinks,
 			};
 
 		case SET_ERRORS:

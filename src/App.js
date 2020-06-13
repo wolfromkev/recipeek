@@ -40,7 +40,7 @@ function App() {
 	return (
 		<Provider store={store}>
 			<PersistGate persistor={persistor}>
-				<div class='container'>
+				<div className='container'>
 					<Search></Search>
 					<List></List>
 					<Recipe></Recipe>

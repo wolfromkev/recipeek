@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
-import { getRecipes } from '../Redux/actions';
+import { getRecipes, loadRecipe } from '../Redux/actions';
 import { connect } from 'react-redux';
 //Icons
 import { AiOutlineHeart } from 'react-icons/ai';
 import { IoMdWine } from 'react-icons/io';
 import { BsSearch } from 'react-icons/bs';
-import { loadRecipe } from '../Redux/actions';
+import uniqid from 'uniqid';
 
 export class Search extends Component {
 	state = {
 		search: '',
 	};
+
+	componentDidMount() {
+		this.props.getRecipes(this.state.search);
+	}
+	componentDidUpdate(prevProps) {
+		this.props.loadRecipe(this.props.drinks[0]);
+	}
 
 	handleSearch = (event) => {
 		event.preventDefault();
@@ -34,17 +41,17 @@ export class Search extends Component {
 			likes.length > 0 ? (
 				likes.map((like) => {
 					return (
-						<li>
+						<li key={uniqid()}>
 							<button
-								class='button_test'
+								className='button_test'
 								onClick={() => this.recipeLoader(like)}
 							>
-								<figure class='likes__fig'>
-									<img src={like.strDrinkThumb} alt='Image' />
+								<figure className='likes__fig'>
+									<img src={like.strDrinkThumb} alt='drinkThumbnail' />
 								</figure>
-								<div class='likes__data'>
-									<h4 class='likes__name'>{like.strDrink}</h4>
-									<p class='likes__author'>{like.strGlass}</p>
+								<div className='likes__data'>
+									<h4 className='likes__name'>{like.strDrink}</h4>
+									<p className='likes__author'>{like.strGlass}</p>
 								</div>
 							</button>
 						</li>
@@ -52,42 +59,41 @@ export class Search extends Component {
 				})
 			) : (
 				<li>
-					<button class='button_test' href=''>
-						<div class='likes__data'>
-							<h4 class='likes__name'>You havent saved any recipes yet.</h4>
+					<button className='button_test' href=''>
+						<div className='likes__data'>
+							<h4 className='likes__name'>You havent saved any recipes yet.</h4>
 						</div>
 					</button>
 				</li>
 			);
 
 		return (
-			<header class='header'>
-				<div class='header_full_logo'>
-					<IoMdWine class='header_logo_kevin'></IoMdWine>
-					<h1 class='header_slogan'> Recipeek</h1>
+			<header className='header'>
+				<div className='header_full_logo'>
+					<IoMdWine className='header_logo_kevin'></IoMdWine>
+					<h1 className='header_slogan'> Recipeek</h1>
 				</div>
 
-				<form class='search' onSubmit={this.handleSearch}>
+				<form className='search'>
 					<input
 						type='text'
-						class='search__field'
+						className='search__field'
 						placeholder='Search over 1,000,000 recipes...'
-						submit
 						name='search'
 						onChange={this.handleChange}
 					/>
-					<button class='btn search__btn' onClick={this.handleSearch}>
-						<BsSearch class='search__icon'></BsSearch>
+					<button className='btn search__btn' onClick={this.handleSearch}>
+						<BsSearch className='search__icon'></BsSearch>
 						<span>Search</span>
 					</button>
 				</form>
 
-				<div class='likes'>
-					<div class='likes__field'>
-						<AiOutlineHeart class='likes__icon'></AiOutlineHeart>
+				<div className='likes'>
+					<div className='likes__field'>
+						<AiOutlineHeart className='likes__icon'></AiOutlineHeart>
 					</div>
-					<div class='likes__panel'>
-						<ul class='likes__list'>{likedRecipes}</ul>
+					<div className='likes__panel'>
+						<ul className='likes__list'>{likedRecipes}</ul>
 					</div>
 				</div>
 			</header>
@@ -97,7 +103,7 @@ export class Search extends Component {
 
 const mapStateToProps = (state) => ({
 	likes: state.likes,
-	recipes: state.recipes,
+	drinks: state.drinks,
 });
 
 export default connect(mapStateToProps, { getRecipes, loadRecipe })(Search);

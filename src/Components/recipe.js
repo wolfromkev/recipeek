@@ -14,8 +14,7 @@ import {
 	addToShopping,
 	updateShoppingItem,
 } from '../Redux/actions';
-import ShoppingList from './shoppingList';
-
+import uniqid from 'uniqid';
 export class recipeView extends Component {
 	state = {
 		servings: 1,
@@ -40,12 +39,6 @@ export class recipeView extends Component {
 	};
 
 	shoppingListHandler = (ingredients, shoppingList) => {
-		if (shoppingList.length === 0) {
-			for (let i = 0; i < ingredients.length; i++) {
-				this.props.addToShopping(ingredients[i]);
-			}
-		}
-
 		for (let i = 0; i < ingredients.length; i++) {
 			if (
 				shoppingList.find(
@@ -154,9 +147,9 @@ export class recipeView extends Component {
 					}
 
 					ingredientListRender.push(
-						<li className='recipe__item'>
-							<AiOutlineCheck class='recipe__icon'></AiOutlineCheck>
-							<div className='recipe__count' className='recipe__info-text'>
+						<li className='recipe__item' key={uniqid()}>
+							<AiOutlineCheck className='recipe__icon'></AiOutlineCheck>
+							<div className='recipe__count recipe__info-text'>
 								{totalNumber} {unit[0]} {unit[1]}{' '}
 								{eval(`drink.strIngredient${i}`)}
 							</div>
@@ -223,7 +216,6 @@ export class recipeView extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	recipes: state.recipes,
 	drink: state.drink,
 	likes: state.likes,
 	shoppingList: state.shoppingList,
