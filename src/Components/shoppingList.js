@@ -21,7 +21,6 @@ export class shoppingList extends Component {
 
 	render() {
 		const { shoppingList } = this.props;
-		console.log(shoppingList.length);
 		let shoppingItem = shoppingList.map((item) => {
 			return (
 				<li className='shopping__item' key={uniqid()}>

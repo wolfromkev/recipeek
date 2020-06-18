@@ -10,13 +10,11 @@ import uniqid from 'uniqid';
 export class Search extends Component {
 	state = {
 		search: '',
+		initialSearch: true,
 	};
 
 	componentDidMount() {
 		this.props.getRecipes(this.state.search);
-	}
-	componentDidUpdate(prevProps) {
-		this.props.loadRecipe(this.props.drinks[0]);
 	}
 
 	handleSearch = (event) => {

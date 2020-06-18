@@ -9,7 +9,6 @@ import {
 	REMOVE_FROM_SHOPPING,
 	UPDATE_SHOPPING_ITEM,
 } from './types';
-import { filter } from 'mathjs';
 
 const initState = {
 	drinks: [],
@@ -33,12 +32,10 @@ const reducer = (state = initState, action) => {
 						eval(`drink.strIngredient${i}`) !== null &&
 						eval(`drink.strMeasure${i}`) === null
 					) {
-						console.log(drink);
 						return false;
 					} else if (
 						/1\/3|2\/3|\/6|\/9|\/11/i.test(eval(`drink.strMeasure${i}`))
 					) {
-						console.log(drink);
 						return false;
 					}
 				}
